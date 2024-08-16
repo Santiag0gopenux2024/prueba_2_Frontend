@@ -22,7 +22,8 @@ export class RegisterTaskComponent implements OnInit {
       name: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
       email: ['', [Validators.required, Validators.email]],
       taskname: ['', Validators.required],
-      assignedperson: ['', Validators.required]
+      assignedperson: ['', Validators.required],
+      selection: ['', Validators.required],
     });
   }
 

@@ -3,4 +3,5 @@ export interface Tasks {
   email: string;
   taskname: string;
   assignedperson: string;
+  selection: string;
 }

@@ -5,6 +5,7 @@
       <mat-list-item> Correo electrónico </mat-list-item>
       <mat-list-item> Nombre Tarea </mat-list-item>
       <mat-list-item> Persona Asignada </mat-list-item>
+      <mat-list-item> Nivel de tarea </mat-list-item>
       <mat-list-item> Editar </mat-list-item>
     </div>
     <div *ngFor="let task of tasks" class="container">
@@ -12,6 +13,7 @@
       <mat-list-item> {{ task.email }} </mat-list-item>
       <mat-list-item> {{ task.taskname }} </mat-list-item>
       <mat-list-item> {{ task.assignedperson }} </mat-list-item>
+      <mat-list-item> {{ task.selection }} </mat-list-item>
       <mat-list-item>
         <button mat-raised-button color="primary" (click)="editTask(task)">Editar</button>
       </mat-list-item>
