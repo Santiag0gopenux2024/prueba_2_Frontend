@@ -1,9 +1,3 @@
-h1{
-  text-align: center;
-  font-family: "Abyssinica SIL";
-  margin: 20px;
-}
-
 h2{
   font-family: "Abyssinica SIL";
   margin: 20px;
@@ -18,8 +12,4 @@ h2{
 .others-field {
   position: relative;
   margin: 8px;
-}
-
-.spacingtwo {
-  padding: 20px;
 }

@@ -1,22 +1,14 @@
+.container {
+  text-align: center
+}
+
 h1 {
   text-align: center;
   font-family: "Abyssinica SIL";
-}
-
-.container {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.nav {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  margin: 30px;
+  padding: 15px;
 }
 
 .nav-link {
   font-family: "Abyssinica SIL";
   font-size: 20px;
-  padding: 10px 20px;
 }

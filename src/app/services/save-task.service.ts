@@ -4,6 +4,7 @@ import { Tasks } from "../interface/interface";
 @Injectable({
   providedIn: 'root'
 })
+
 export class SaveTaskService {
 
   private tasks: Tasks[] = [];
