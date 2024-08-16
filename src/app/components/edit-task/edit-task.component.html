@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Editar Tarea</h1>
+<div mat-dialog-content class="container">
+  <form [formGroup]="editForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre Tarea</mat-label>
+      <input matInput formControlName="taskname">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Persona Asignada </mat-label>
+      <input matInput formControlName="assignedperson">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="save()">Guardar</button>
+</div>
+
+

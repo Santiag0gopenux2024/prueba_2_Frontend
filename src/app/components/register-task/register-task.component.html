@@ -1,0 +1,31 @@
+<h1>Registro de Tareas</h1>
+<h2>Ingresa los siguientes datos: </h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="container">
+  <mat-form-field class="others-field" appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="name">
+    <mat-error *ngIf="form.get('name')?.hasError('required')">Campo requerido.</mat-error>
+    <mat-error *ngIf="form.get('name')?.hasError('pattern')">Formato del nombre inválido.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="email-field" appearance="fill">
+    <mat-label>Correo electrónico</mat-label>
+    <mat-error *ngIf="form.get('email')?.hasError('required')">Campo requerido.</mat-error>
+    <mat-error *ngIf="form.get('email')?.hasError('email')">Formato del correo inválido.</mat-error>
+    <input matInput formControlName="email">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre Tarea</mat-label>
+    <input matInput formControlName="taskname">
+    <mat-error *ngIf="form.get('taskname')?.hasError('required')">Campo requerido.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Persona Asignada</mat-label>
+    <input matInput formControlName="assignedperson">
+    <mat-error *ngIf="form.get('assignedperson')?.hasError('required')">Campo requerido.</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button type="submit" color="warn">Guardar</button>
+</form>
