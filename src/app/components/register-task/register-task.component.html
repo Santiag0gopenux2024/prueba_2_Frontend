@@ -1,33 +1,33 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="container">
   <mat-form-field class="others-field" appearance="fill">
     <mat-label>Nombre</mat-label>
-    <input matInput formControlName="name">
+    <input matInput formControlName="name" id="name" autocomplete="name">
     <mat-error *ngIf="form.get('name')?.hasError('required')">Campo requerido.</mat-error>
     <mat-error *ngIf="form.get('name')?.hasError('pattern')">Formato del nombre inválido.</mat-error>
   </mat-form-field>
 
   <mat-form-field class="others-field" appearance="fill">
     <mat-label>Correo electrónico</mat-label>
+    <input matInput formControlName="email" id="email" autocomplete="email">
     <mat-error *ngIf="form.get('email')?.hasError('required')">Campo requerido.</mat-error>
     <mat-error *ngIf="form.get('email')?.hasError('email')">Formato del correo inválido.</mat-error>
-    <input matInput formControlName="email">
   </mat-form-field>
 
   <mat-form-field class="others-field" appearance="fill">
     <mat-label>Nombre Tarea</mat-label>
-    <input matInput formControlName="taskname">
+    <input matInput formControlName="taskname" id="taskname" autocomplete="off">
     <mat-error *ngIf="form.get('taskname')?.hasError('required')">Campo requerido.</mat-error>
   </mat-form-field>
 
   <mat-form-field class="others-field" appearance="fill">
     <mat-label>Persona Asignada</mat-label>
-    <input matInput formControlName="assignedperson">
+    <input matInput formControlName="assignedperson" id="assignedperson" autocomplete="off">
     <mat-error *ngIf="form.get('assignedperson')?.hasError('required')">Campo requerido.</mat-error>
   </mat-form-field>
 
   <mat-form-field class="others-field" appearance="fill">
     <mat-label>Nivel de tarea</mat-label>
-    <mat-select formControlName="selection">
+    <mat-select formControlName="selection" id="selection" autocomplete="off">
       <mat-option value="Muy importante">Muy importante</mat-option>
       <mat-option value="Importante">Importante</mat-option>
       <mat-option value="Básica">Básica</mat-option>
@@ -36,5 +36,5 @@
     <mat-error *ngIf="formSubmitted && form.get('selection')?.hasError('required')">Campo requerido.</mat-error>
   </mat-form-field>
 
-  <button mat-raised-button type="submit" color="warn" class="others-field">Guardar</button>
+  <button mat-raised-button type="submit" color="warn" class="send">Enviar</button>
 </form>

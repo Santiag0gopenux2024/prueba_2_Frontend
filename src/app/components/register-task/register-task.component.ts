@@ -14,20 +14,12 @@ export class RegisterTaskComponent implements OnInit {
   constructor(private fb: FormBuilder, private saveTaskService: SaveTaskService) { }
 
   ngOnInit(): void {
-    this.initializeForm();
-  }
-
-  private initializeForm(): void {
-    this.form = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
-      email: ['', [Validators.required, Validators.email]],
-      taskname: ['', Validators.required],
-      assignedperson: ['', Validators.required],
-      selection: ['', Validators.required],
-    });
+    this.form = this.saveTaskService.initForm();
   }
 
   onSubmit(): void {
+    this.saveTaskService.submit(this.form.value);
+
     this.formSubmitted = true;
     if (this.form.valid) {
       const formValue = { ...this.form.value };

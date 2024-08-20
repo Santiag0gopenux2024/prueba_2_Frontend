@@ -5,8 +5,8 @@ import { RegisterTaskComponent } from '../components/register-task/register-task
 import { ListTaskComponent } from '../components/list-task/list-task.component';
 
 const routes: Routes = [
-  { path: 'register', component: RegisterTaskComponent },
-  { path: 'list', component: ListTaskComponent },
+  { path: 'register-task', component: RegisterTaskComponent },
+  { path: 'list-task', component: ListTaskComponent },
 ];
 
 @NgModule({
