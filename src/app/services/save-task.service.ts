@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Tasks } from '../interface/interface';
-import {FormGroup, FormBuilder, Validators} from "@angular/forms";
-import { BehaviorSubject } from 'rxjs';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {MatDialog} from "@angular/material/dialog";
 import {RegisterTaskComponent} from "../components/register-task/register-task.component";
 
@@ -9,22 +9,25 @@ import {RegisterTaskComponent} from "../components/register-task/register-task.c
   providedIn: 'root'
 })
 export class SaveTaskService {
-  form!: FormGroup;
+  private _form!: FormGroup;
   private taskSubject: BehaviorSubject<Tasks | null> = new BehaviorSubject<Tasks | null>(null);
   taskSubject$ = this.taskSubject.asObservable();
-
   editing: boolean = false;
 
   private tasks: Tasks[] = [];
 
-  constructor(private fb: FormBuilder, public dialog: MatDialog) {}
+  constructor(private fb: FormBuilder, private dialog: MatDialog) {}
 
   set taskObservable(value: Tasks) {
     this.taskSubject.next(value);
   }
 
-  get tasksObservable(){
+  get tasksObservable() {
     return this.taskSubject.getValue();
+  }
+
+  get form(): FormGroup {
+    return this._form;
   }
 
   getTasks(): Tasks[] {
@@ -35,14 +38,14 @@ export class SaveTaskService {
     const newId = this.tasks.length > 0 ? Math.max(...this.tasks.map(t => t.id || 0)) + 1 : 1;
     task.id = newId;
     this.tasks.push(task);
+    console.log(this.tasks);
   }
 
-
-  set edit(value:boolean){
+  set edit(value: boolean) {
     this.editing = value;
   }
 
-  get edit(){
+  get edit() {
     return this.editing;
   }
 
@@ -54,7 +57,8 @@ export class SaveTaskService {
   }
 
   initForm(){
-    return this.form = this.fb.group({
+    return this.fb.group({
+      id: [this.tasksObservable?.id || undefined, Validators.required],
       name: [this.tasksObservable?.name || undefined, Validators.required],
       email: [this.tasksObservable?.email || undefined, Validators.required],
       taskname: [this.tasksObservable?.taskname || undefined, Validators.required],
@@ -68,7 +72,7 @@ export class SaveTaskService {
   }
 
   submit(task: Tasks): void {
-    if (this.editing && task.id) {
+    if (task.id) {
       this.updateTask(task.id, task);
     } else {
       this.addTask(task);

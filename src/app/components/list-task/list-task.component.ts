@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SaveTaskService } from "../../services/save-task.service";
 import { Tasks } from "../../interface/interface";
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { RegisterTaskComponent } from '../register-task/register-task.component';
 
 @Component({
   selector: 'app-list-task',
@@ -9,10 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./list-task.component.css']
 })
 export class ListTaskComponent implements OnInit {
-
   tasks: Tasks[] = [];
 
-  constructor(private saveTaskService: SaveTaskService, private router: Router) { }
+  constructor(private saveTaskService: SaveTaskService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.tasks = this.saveTaskService.getTasks();
@@ -20,7 +20,9 @@ export class ListTaskComponent implements OnInit {
 
   editTask(task: Tasks): void {
     this.saveTaskService.taskObservable = task;
-    this.saveTaskService.editing = true;
-    this.saveTaskService.openDialog();
+    this.saveTaskService.edit = true;
+    this.dialog.open(RegisterTaskComponent, {
+      width: '400px'
+    });
   }
 }

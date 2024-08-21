@@ -18,15 +18,9 @@ export class RegisterTaskComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.formSubmitted = true;
-
-    if (this.form.valid) {
-      const formValue = { ...this.form.value };
-      this.saveTaskService.submit(formValue);
-      this.resetForm();
-    } else {
-      this.markFormTouched();
-    }
+    this.saveTaskService.submit(this.form.value);
+    this.resetForm();
+    this.markFormTouched();
   }
 
   private resetForm(): void {
@@ -44,4 +38,3 @@ export class RegisterTaskComponent implements OnInit {
     this.form.markAllAsTouched();
   }
 }
-
