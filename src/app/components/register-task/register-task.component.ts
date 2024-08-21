@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { SaveTaskService } from "../../services/save-task.service";
 
 @Component({
@@ -11,19 +11,18 @@ export class RegisterTaskComponent implements OnInit {
   form!: FormGroup;
   formSubmitted = false;
 
-  constructor(private fb: FormBuilder, private saveTaskService: SaveTaskService) { }
+  constructor(private saveTaskService: SaveTaskService) { }
 
   ngOnInit(): void {
     this.form = this.saveTaskService.initForm();
   }
 
   onSubmit(): void {
-    this.saveTaskService.submit(this.form.value);
-
     this.formSubmitted = true;
+
     if (this.form.valid) {
       const formValue = { ...this.form.value };
-      this.saveTaskService.addTask(formValue);
+      this.saveTaskService.submit(formValue);
       this.resetForm();
     } else {
       this.markFormTouched();

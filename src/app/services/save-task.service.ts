@@ -15,7 +15,7 @@ export class SaveTaskService {
 
   editing: boolean = false;
 
-  private tasks: Tasks[] = []; // Esta es tu lista de tareas
+  private tasks: Tasks[] = [];
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {}
 
@@ -32,8 +32,11 @@ export class SaveTaskService {
   }
 
   addTask(task: Tasks): void {
+    const newId = this.tasks.length > 0 ? Math.max(...this.tasks.map(t => t.id || 0)) + 1 : 1;
+    task.id = newId;
     this.tasks.push(task);
   }
+
 
   set edit(value:boolean){
     this.editing = value;
@@ -64,9 +67,9 @@ export class SaveTaskService {
     this.dialog.open(RegisterTaskComponent);
   }
 
-  submit(task: Tasks){
-    if(this.editing) {
-      this.updateTask(1,task)
+  submit(task: Tasks): void {
+    if (this.editing && task.id) {
+      this.updateTask(task.id, task);
     } else {
       this.addTask(task);
     }
